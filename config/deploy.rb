@@ -26,7 +26,7 @@ require "bundler/capistrano"
 server "31.131.16.254", :web, :app, :db, primary: true
 
 set :application, "shopanvar"
-set :user, "deployer"
+set :user, "root"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
