@@ -15,5 +15,6 @@
 /tmp/*
 # Ignore the default SQLite database.
 /db/*.sqlite3
-
+/.idea
 /config/database.yml
+/public/

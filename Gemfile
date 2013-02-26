@@ -8,9 +8,13 @@ gem 'capistrano'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
+group :postgresql do
+    gem "pg", ">= 0.14.1" 
+end
 
 gem 'spree_i18n', :git => 'git://github.com/spree/spree_i18n.git'
 gem 'spree_slider'
+#gem 'spree_blue_theme', :git => 'git://github.com/spree/spree_blue_theme.git'
 #gem 'spree_showcase', '= 0.6.0'
 # Gems used only for assets and not required
 # in production environments by default.
