@@ -26,19 +26,27 @@ require "bundler/capistrano"
 server "31.131.16.254", :web, :app, :db, primary: true
 
 set :application, "shopanvar"
-set :user, "root"
+set :user, "deployer"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
 
-set :scm, "git"
+set :scm, :git
 set :repository, "git@github.com:gsapophis/shopanvar.git"
 set :branch, "master"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
+
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
+
+after "deploy:setup", "deploy:create_release_dir"
+namespace :deploy do
+  task :create_release_dir, :except => {:no_release => true} do
+    run "mkdir -p #{fetch :releases_path}"
+  end
+end
 
 namespace :deploy do
   %w[start stop restart].each do |command|
